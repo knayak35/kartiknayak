@@ -1,751 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kartik Nayak | Global Innovator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kartik Nayak — Portfolio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Instrument+Serif:ital@0;1&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
-
+  <!-- Fonts -->
+  
   <style>
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
     :root {
-      --bg: #030303;
-      --accent: #3b82f6;
-      --accent-glow: rgba(59, 130, 246, 0.5);
-      --ink: #ffffff;
-      --glass: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.08);
+      --serif: "Playfair Display", serif;
+      --sans: "Inter", sans-serif;
+      --text: #111;
+      --muted: #666;
+      --max: 1200px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
 
     body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      font-family: var(--sans);
+      color: var(--text);
+      background: #fff;
     }
 
-    /* --- Math Background Engine --- */
-    #math-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      opacity: 0.25;
-      pointer-events: none;
-    }
-
-    /* --- Navigation Status --- */
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      padding: 30px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      mix-blend-mode: difference;
-    }
-
-    .nav-logo {
-      font-weight: 800;
-      font-size: 24px;
-      letter-spacing: -1px;
-    }
-
-    .live-status {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      opacity: 0.95;
-    }
-
-    .dot {
-      width: 8px; height: 8px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #10b981;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); opacity: 0.85; }
-      50% { transform: translateY(10px); opacity: 0.6; }
-    }
-
-    /* --- Hero: The Vortex --- */
-    .hero { height: 350vh; position: relative; }
-
-    .hero-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1500px;
-    }
-
-    .hero-title {
-      position: relative;
-      z-index: 100;
-      text-align: center;
-      pointer-events: none;
-      padding: 0 18px;
-    }
-
-    .hero-title h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(4rem, 16vw, 12rem);
-      line-height: 0.8;
-      font-weight: 400;
-      letter-spacing: -4px;
-    }
-
-    .role-wrapper {
-      margin-top: 30px;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 6px;
-    }
-
-    .vortex-container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-    }
-
-    .v-item {
-      position: absolute;
-      width: 250px;
-      height: 350px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-      will-change: transform;
-    }
-
-    .v-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: 0.5s;
-    }
-
-    .v-item:hover img { transform: scale(1.1); }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      text-align: center;
-      opacity: 0.6;
-    }
-
-    /* --- Horizontal Experience --- */
-    .h-wrap { background: #000; }
-
-    .h-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .h-track {
-      display: flex;
-      padding-left: 10vw;
-      gap: 10vw;
-    }
-
-    .h-card {
-      min-width: 80vw;
-      height: 75vh;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 80px;
-      display: flex;
-      align-items: center;
-      gap: 80px;
-      backdrop-filter: blur(40px);
-    }
-
-    .h-img {
-      flex: 1;
-      height: 100%;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .h-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .h-kicker {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      opacity: 0.55;
-      margin-bottom: 18px;
-    }
-
-    /* --- Bento Grid Evolution --- */
-    .bento-section {
-      padding: 150px 50px;
-      max-width: 1500px;
+    section {
+      max-width: var(--max);
       margin: 0 auto;
+      padding: 0 48px;
     }
 
-    .grid {
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .image {
+      background: #e5e5e5;
+      width: 100%;
+    }
+
+    .caption {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 30px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
     }
 
-    .card {
-      background: #080808;
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 60px;
-      position: relative;
-      overflow: hidden;
-      transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-    }
-
-    .card:hover { border-color: var(--accent); }
-
-    .card-glow {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at var(--x) var(--y), rgba(59, 130, 246, 0.15), transparent 50%);
-      pointer-events: none;
-    }
-
-    .span-8 { grid-column: span 8; }
-    .span-6 { grid-column: span 6; }
-    .span-4 { grid-column: span 4; }
-    .span-12 { grid-column: span 12; }
-
-    .btn-main {
-      padding: 22px 45px;
-      border-radius: 100px;
-      background: #fff;
-      color: #000;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 15px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      transition: 0.3s;
-    }
-
-    .btn-main:hover {
-      background: var(--accent);
-      color: #fff;
-      transform: scale(1.05) translateY(-5px);
-      box-shadow: 0 20px 40px var(--accent-glow);
-    }
-
-    .chips {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 26px;
-    }
-
-    .chip {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 12px;
-      letter-spacing: 0.2px;
-      opacity: 0.95;
-    }
-
-    /* --- Footer --- */
-    .footer {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      color: #000;
-      text-align: center;
-      padding: 0 24px;
-    }
-
-    .footer h2 {
-      font-family: 'Poppins', sans-serif;
-  
-      font-size: 18vw;
-      line-height: 0.7;
-      letter-spacing: -8px;
-    }
-
-    @media (max-width: 1000px) {
-      nav { padding: 22px 20px; }
-      .h-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 40px;
-        height: auto;
-        gap: 28px;
+    @media (max-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
       }
-      .span-8, .span-4, .span-6 { grid-column: span 12; }
-      .v-item { width: 180px; height: 250px; }
     }
   </style>
 </head>
-
 <body>
-  <nav>
-    <div class="nav-logo">KN.</div>
-    <div class="live-status"><span class="dot"></span> Based in Semarang, Indonesia</div>
-  </nav>
 
-  <canvas id="math-canvas"></canvas>
+<!-- HERO -->
+<section class="grid-2" style="min-height:100vh; align-items:center;">
+  <div>
+    <div style="font-size:13px; letter-spacing:0.15em; color:var(--muted); margin-bottom:40px;">
+      WELCOME TO MY PORTFOLIO
+    </div>
 
-  <main>
-    <section class="hero">
-      <div class="hero-sticky">
-        <div class="vortex-container" id="vortex">
-          <div class="v-item" style="top:10%; left:10%;"><img src="x-icon.png" alt="Background"></div>
-          <div class="v-item" style="top:20%; right:15%;"><img src="picture.png" alt="Portrait"></div>
-          <div class="v-item" style="bottom:10%; right:10%;"><img src="unnamed.jpg" alt="Work"></div>
-          <div class="v-item" style="top:50%; left:20%;"><img src="picture.png" alt="Portrait 2"></div>
-          <div class="v-item" style="top:40%; right:5%;"><img src="background.jpg" alt="Background 2"></div>
-          <div class="v-item" style="top:5%; right:40%;"><img src="unnamed.jpg" alt="Work 2"></div>
-        </div>
+    <h1 style="font-size:84px; line-height:1.05; margin-bottom:32px;">
+      Kartik<br />Nayak
+    </h1>
 
-        <div class="hero-title">
-          <p style="letter-spacing: 10px; opacity: 0.4; margin-bottom: 20px;">
-            VALEDICTORIAN • STEM FOUNDER • OLYMPIAD MEDALIST
-          </p>
-          <h1>KARTIK<br /><span style="font-family:'Instrument Serif'; font-style: italic;">NAYAK.</span></h1>
-          <div class="role-wrapper" id="role-text">RESEARCHER</div>
-          <p style="max-width: 920px; margin: 26px auto 0; opacity: 0.65; font-size: 16px; line-height: 1.8;">
-            I build things where science and technology meet impact: student research communities, software that connects people, and
-            educational resources that actually help. I care about clean execution, real results, and ideas that scale to global levels.
-          </p>
-        </div>
+    <div style="font-size:14px; letter-spacing:0.15em; margin-bottom:64px;">
+      ACADEMIC | ENGINEER | LEADER
+    </div>
 
-        <div class="scroll-hint">
-          <p style="font-size: 10px; letter-spacing: 5px; text-transform: uppercase;">Scroll for highlights</p>
-          <i class="fa-solid fa-chevron-down" style="margin-top: 15px; animation: bounce 2s infinite;"></i>
-        </div>
+  </div>
+
+  <img src="personal.png" style="width: 750px; height: 550px;"">
+</section>
+
+<!-- ABOUT -->
+<section style="margin-top:160px;">
+  <h2 style="font-size:32px; margin-bottom:40px;">About Me</h2>
+
+  <div class="grid-2">
+    <!-- LEFT: IMAGE + CAPTION -->
+    <div>
+      <img 
+        src="esplanade.png" 
+        style="width:100%; height:auto; max-width:550px;"
+        alt="Esplanade Singapore"
+      />
+      <div class="caption">
+        In front of the beautiful Esplanade theatre, Singapore
       </div>
-    </section>
+    </div>
 
-    <section class="h-wrap">
-      <div class="h-sticky">
-        <div class="h-track" id="h-track">
+    <!-- RIGHT: TEXT -->
+    <div>
+      <h3 style="font-size:36px; line-height:1.2; margin-bottom:32px;">
+        I’m a high school senior working across mathematics and science.
+      </h3>
 
-          <div class="h-card">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">SINGAPORE INTERNATIONAL MATH OLYMPIAD CHALLENGE</div>
-              <i class="fa-solid fa-earth-americas fa-3x" style="color: var(--accent);"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                3rd Globally
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                SIMOC 2022: 3rd place worldwide out of 2,000+ participants,
-                with medals across multiple rounds.
-              </p>
-  
-            </div>
-            <div class="h-img"><img src="simoc-award.png" alt="SIMOC certificate"></div>
-          </div>
+      <p>
+        I’ve built various technical projects that involve education, community impact, and large-scale collaboration. Alongside this, I’ve participated in international-level mathematics olympiads for over a decade, which provided a rigorous foundation in abstract reasoning and proof-based thinking.
+      </p>
 
-          <div class="h-card" style="background: rgba(59, 130, 246, 0.06); border-color: rgba(59, 130, 246, 0.22);">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">International Youth Math Challenge</div>
-              <i class="fa-solid fa-trophy fa-3x" style="color: var(--accent);"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                #1 Indonesia
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                IYMC 2025: Indonesia National Award (Rank #1 in Indonesia) and placed in the top 5% globally.
-              </p>
+      <p>
+        I’m interested in pursuing a career in data analytics in a finance-focused environment, with a long-term goal of becoming a mathematics professor and contributing to both research and teaching.
+      </p>
 
-            </div>
-            <div class="h-img"><img src="iymc-award.png" alt="IYMC highlight"></div>
-          </div>
+      <p>
+        In my free time, I enjoy playing Bollywood music on my guitar or going out for a run. You can also find me at art galleries, spending time with abstract visual works.
+      </p>
+    </div>
+  </div>
+</section>
 
-          <div class="h-card" style="background: rgba(16, 185, 129, 0.06); border-color: rgba(16, 185, 129, 0.22);">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">Southeast Asian Mathematical Olympiad</div>
-              <i class="fa-solid fa-medal fa-3x" style="color: var(--accent);"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                Gold Medal
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                SEAMO X Final Round 2022: Gold Medal and ranked in the top 5% globally among international participants.
-              </p>
-          
-            </div>
-            <div class="h-img"><img src="seamo-x.png" alt="SEAMO certificate"></div>
-          </div>
+<!-- MATH OLYMPIADS -->
+ <br><br><br>
+<section>
+  <h2 style="font-size:32px; margin-bottom:40px;">Math Olympiads</h2>
 
-          <div class="h-card">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">Research publishing organization</div>
-              <i class="fa-solid fa-flask-vial fa-3x" style="color: var(--accent);"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                GSEO Journal
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                Founder and President of Global Science and Engineering Organization: a youth-led STEM journal reaching 10+ countries
-                and 15+ schools. I run publishing articles, worldwide editor recruitment, and interviews with top university students.
-              </p>
-  
-            </div>
-            <div class="h-img"><img src="gseo.png" alt="GSEO image"></div>
-          </div>
-
-          <div class="h-card" style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.1);">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">Student council</div>
-              <i class="fa-solid fa-people-group fa-3x" style="color: var(--accent);"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                President
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                Participated and led the student council from Aug 2021 to Jun 2024. Organized the school’s first Prom Night with $2000 in sponsorships
-                and 100+ attendees, launched a book donation program, and worked with faculty to push student-focused changes.
-              </p>
-
-            </div>
-            <div class="h-img"><img src="picture.png" alt="Leadership"></div>
-          </div>
-
-
-          <div class="h-card" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.18);">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">Teaching</div>
-              <i class="fa-solid fa-chalkboard-user fa-3x" style="color: #10b981;"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                STEM & Math Olympiad Tutor
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                Mathematics and Science Tutor at Star Generation (Aug 2024 to Feb 2025). Personalized lessons, simplified tough concepts,
-                and helped primary students improve performance by 40%+.
-              </p>
-
-            </div>
-            <div class="h-img"><img src="stargen.png" alt="Tutoring"></div>
-          </div>
-
-          <div class="h-card">
-            <div style="flex: 1.2;">
-              <div class="h-kicker">Education content</div>
-              <i class="fa-solid fa-book-open fa-3x" style="color: var(--accent);"></i>
-              <h2 style="font-size: 5.2rem; font-family: 'Instrument Serif'; line-height: 1; margin: 26px 0;">
-                ZNotes
-              </h2>
-              <p style="font-size: 1.35rem; opacity: 0.65; line-height: 1.7;">
-                Notes Developer at ZNotes Education (May 2022 to Mar 2024). Youngest contributor, helped develop a new board for Cambridge Checkpoint Mathematics,
-                and co-created IGCSE notes across Biology, Computer Science, Physics with clarity and curriculum alignment.
-              </p>
-            </div>
-            <div class="h-img"><img src="znotes.png" alt="ZNotes"></div>
-          </div>
-
-
-
-        </div>
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    margin-bottom:32px;
+    align-items:end;
+  ">
+    <!-- IYMC -->
+    <div style="display:flex; flex-direction:column;">
+      <div style="height:360px; display:flex; align-items:center;">
+        <img
+          src="iymc.png"
+          style="width:100%; height:auto; object-fit:contain;"
+          alt="IYMC Certificate"
+        />
       </div>
-    </section>
+      <div class="caption">Ranked 1 in Indonesia</div>
+    </div>
 
-    <section class="bento-section">
-      <div class="grid">
-
-        <div class="card span-8">
-          <div class="card-glow"></div>
-          <h3 style="font-family: 'Instrument Serif'; font-size: 4rem;">Hello World!</h3>
-          <p style="color: var(--accent); font-weight: 800; font-size: 1.2rem; margin: 10px 0;">
-
-          </p>
-          <p style="opacity: 0.65; font-size: 1.15rem; line-height: 1.9;">
-
-Hello, it’s a pleasure to get to know you.
-<br><br>
-My name is Kartik Nayak, and I’m based in Semarang, Indonesia. I’m passionate about mathematics, engineering, and exploring how ideas move from theory to real world impact.
-<br><br>
-I enjoy work that demands clear thinking and high standards, whether that means solving a tough problem, learning a new concept properly, or building skills that compound over time. I’m especially interested in physics and computing, and I’m always looking for opportunities to learn from people who take ambitious work seriously.
-<br><br>
-In my free time, I like playing guitar and going cycling, especially when I need a reset from a busy schedule. I’m also a big arts fan, so I’m drawn to music, visual design, and anything creative that tells a story. I love travelling too, and photography is how I capture the details, the people, and the small moments that make a place feel real.
-<br><br>
-Feel free to reach out. I’m always happy to connect with curious, driven people and explore ways to learn, grow, and build toward a better future.</p>
-  
-        </div>
-
-        <div class="card span-4" style="padding: 0; background: none;">
-          <img src="personal.png" alt="Kartik" style="width: 100%; height: 100%; object-fit: cover; border-radius: 40px;">
-        </div>
-
-        <div class="card span-6">
-          <div class="card-glow"></div>
-          <h4 style="font-size: 2rem; margin-bottom: 18px;">
-            <i class="fa-solid fa-school"></i> Education Snapshot
-          </h4>
-          <p style="opacity: 0.65; line-height: 1.9; font-size: 1.05rem;">
-            High School Diploma (Aug 2022 to Jun 2026)<br>IGCSE 2024: A* in Additional Mathematics, Biology, Chemistry, Computer Science,
-            Extended Maths, First Language English, and Physics. <br>A Levels (Ongoing): Pure Mathematics, Further Mathematics, Chemistry, Physics, Computer Science <br><br>AP: 5/5 in Physics C Mechanics, Calculus BC, Computer Science A,
-            Microeconomics, and Macroeconomics. <br>AP Scholar with Distinction (2025). <br>SAT 1530 (Jun 2025).
-          </p>
-  
-        </div>
-
-        <div class="card span-6">
-          <div class="card-glow"></div>
-          <h4 style="font-size: 2rem; margin-bottom: 18px;">
-            <i class="fa-solid fa-microchip"></i> Technical Stack
-          </h4>
-          <p style="opacity: 0.65; line-height: 1.9; font-size: 1.05rem;">
-            I like building practical systems: platforms, content pipelines, and research workflows.
-            Comfortable shipping with clean UI and stable data handling.
-          </p>
-          <div class="chips">
-            <span class="chip">Python</span>
-            <span class="chip">Java</span>
-            <span class="chip">HTML CSS JS</span>
-            <span class="chip">SQL</span>
-            <span class="chip">LaTeX</span>
-            <span class="chip">Notion</span>
-            <span class="chip">Canva</span>
-            <span class="chip">Microsoft 365</span>
-          </div>
-        </div>
-
-        <div class="card span-6">
-          <div class="card-glow"></div>
-          <h4 style="font-size: 2rem; margin-bottom: 18px;">
-            <i class="fa-solid fa-people-group"></i> Leadership and Ownership
-          </h4>
-          <p style="opacity: 0.65; line-height: 1.9; font-size: 1.05rem;">
-            I’ve led teams in both student leadership and STEM publishing. I care about momentum, clarity, and getting real outcomes
-            with real constraints.
-          </p>
-          <div class="chips">
-            <span class="chip">Student Council President</span>
-            <span class="chip">Founder and CIO, GSEO</span>
-            <span class="chip">Stakeholder Management</span>
-            <span class="chip">Systems and Process</span>
-          </div>
-        </div>
-
-        <div class="card span-6">
-          <div class="card-glow"></div>
-          <h4 style="font-size: 2rem; margin-bottom: 18px;">
-            <i class="fa-solid fa-language"></i> Languages
-          </h4>
-          <p style="opacity: 0.65; line-height: 1.9; font-size: 1.05rem;">
-            Fluent across multiple languages, which helps a lot when working with international teams and communities.
-          </p>
-          <div class="chips">
-            <span class="chip">English</span>
-            <span class="chip">Hindi</span>
-            <span class="chip">Indonesian</span>
-          </div>
-        </div>
-
-
+    <!-- SEAMO -->
+    <div style="display:flex; flex-direction:column;">
+      <div style="height:360px; display:flex; align-items:center;">
+        <img
+          src="seamo-x.png"
+          style="width:100%; height:auto; object-fit:contain;"
+          alt="SEAMO X Certificate"
+        />
       </div>
-    </section>
+      <div class="caption">Ranked 4 Globally</div>
+    </div>
 
-    <footer class="footer">
-      <p style="letter-spacing: 15px; font-weight: 800; opacity: 0.3; margin-bottom: 30px;">CONNECT WITH ME</p>
+    <!-- WMI -->
+    <div style="display:flex; flex-direction:column;">
+      <div style="height:360px; display:flex; align-items:center;">
+        <img
+          src="wmi.png"
+          style="width:100%; height:auto; object-fit:contain;"
+          alt="WMI Certificate"
+        />
+      </div><br><br><br>
+      <div class="caption">Top 5% in Indonesia</div>
+    </div>
+  </div>
 
-                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 34px;">
-            <a href="mailto:nayakartik2008@gmail.com" class="btn-main" style="background:#000; color:#fff;">
-              <i class="fa-solid fa-paper-plane"></i> REACH OUT
-            </a>
+  <p>
+    Through years of mathematics olympiads, I’ve developed a disciplined and analytical approach to tackling complex problems. I hope to participate in university-level competitions, such as the Putnam and the IMC, in the coming years.
+  </p>
+</section>
 
-            <div style="display:flex; align-items:center; gap: 18px; margin-left: 6px;">
-              <a href="https://linkedin.com/in/karnay/" style="color:#000; font-weight: 900; text-decoration: none; font-size: 1.6rem;" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-              <a href="https://github.com/knayak35" style="color:#000; font-weight: 900; text-decoration: none; font-size: 1.6rem;" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      <p style="margin-top: 80px; font-size: 12px; font-weight: 700;">© 2026 KARTIK NAYAK • ENGINEERED FOR IMPACT</p>
-    </footer>
-  </main>
 
-  <script>
-    // 1. Smooth Scroll (Lenis)
-    const lenis = new Lenis({ lerp: 0.1 });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
+<!-- TEACHING -->
+<section style="margin-top:180px;">
+  <h2 style="font-size:32px; margin-bottom:40px;">Teaching Expertise</h2>
 
-    // 2. Math Particle Background
-    const canvas = document.getElementById('math-canvas');
-    const ctx = canvas.getContext('2d');
+  <div class="grid-2" style="align-items:start;">
+    <!-- LEFT COLUMN -->
+    <div>
+      <h1 style="font-size:72px; line-height:1.05;">
+        Mathematics,<br />
+        Science,<br />
+        Computer Science
+      </h1>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+      <p style="margin-top:32px;">
+        I’ve been a tutor with Star Generation for over a year, teaching Cambridge IGCSE math, science, and computer science, as well as mathematics olympiad camps for primary students.
+      </p>
 
-    let particles = [];
-    const symbols = ['Σ', 'π', '∞', '∫', '√', 'Δ', 'λ', 'θ'];
+      <p style="margin-top:16px;">
+        Aside from this, I’ve interned at ZNotes Education, producing concise educational materials for IGCSE Biology, Physics, and Computer Science.
+      </p>
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 20 + 10;
-        this.speedX = Math.random() * 0.8 - 0.4;
-        this.speedY = Math.random() * 0.8 - 0.4;
-        this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+      <!-- ZNOTES MOVED HERE -->
+      <img
+        src="znotes.png"
+        style="width:100%; max-width:700px; height:auto; margin-top:32px;"
+        alt="ZNotes Education"
+      />
+    </div>
 
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
-      }
-      draw() {
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.3)';
-        ctx.font = `${this.size}px serif`;
-        ctx.fillText(this.symbol, this.x, this.y);
-      }
-    }
+    <!-- RIGHT COLUMN -->
+    <div>
+      <img
+        src="stargen-media.png"
+        style="width:100%; max-width:500px; height:auto;"
+        alt="Star Generation"
+      />
+    </div>
+  </div>
+</section>
 
-    function initParticles() {
-      particles = [];
-      const count = Math.max(28, Math.floor((window.innerWidth * window.innerHeight) / 35000));
-      for (let i = 0; i < count; i++) particles.push(new Particle());
-    }
-    initParticles();
-    window.addEventListener('resize', initParticles);
 
-    function animParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animParticles);
-    }
-    animParticles();
+<!-- RESEARCH CONNECTION -->
+<section style="margin-top:180px;">
+  <div class="grid-2">
+    <h3 style="font-size:36px; line-height:1.3;">
+      I’m looking to connect with research enthusiasts in mathematics and science. I’m also seeking a mentor to guide me academically, preferably within research or industry.
+    </h3>
 
-    // 3. GSAP Logic
-    gsap.registerPlugin(ScrollTrigger);
+    <img src="connect.png" style="width: 500px; height: 500px;">
+  </div>
+</section>
 
-    // --- HERO VORTEX SHATTER ---
-    const items = document.querySelectorAll('.v-item');
-    const vortexTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.5
-      }
-    });
+<!-- CONTACT -->
+<section style="margin:200px auto;">
+  <h1 style="font-size:72px; line-height:1.05; margin-bottom:80px;">
+    Let’s connect today.
+  </h1>
 
-    items.forEach((item, i) => {
-      const z = -2000 - (i * 500);
-      const x = (Math.random() - 0.5) * 2000;
-      const y = (Math.random() - 0.5) * 1000;
-      vortexTl.fromTo(item,
-        { z: z, opacity: 0, rotateX: Math.random() * 360, rotateY: Math.random() * 360 },
-        { z: 1500, opacity: 1, rotateX: 0, rotateY: 0, x: x * 1.5, y: y * 1.5, duration: 1 }, 0
-      );
-    });
-    vortexTl.from(".hero-title", { scale: 0.5, opacity: 0, filter: "blur(20px)" }, 0.4);
+  <div class="grid-2">
+    <img src="x-icon.png" style="height: 500px; width: 400px;">
 
-    // --- HORIZONTAL TRACK ---
-    const track = document.getElementById('h-track');
-    gsap.to(track, {
-      x: () => -(track.scrollWidth - window.innerWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".h-wrap",
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        end: () => "+=" + track.scrollWidth
-      }
-    });
+    <div style="padding-left:32px; position:relative;">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:#111;"></div>
 
-    // --- ROLE DISSOLVER ---
-    const roles = ["RESEARCHER", "FOUNDER", "MATHLETE", "ENGINEER", "TUTOR", "BUILDER"];
-    let idx = 0;
-    const roleEl = document.getElementById('role-text');
-    setInterval(() => {
-      gsap.to(roleEl, {
-        filter: "blur(20px)", opacity: 0, y: 20, duration: 0.8, onComplete: () => {
-          idx = (idx + 1) % roles.length;
-          roleEl.innerText = roles[idx];
-          gsap.to(roleEl, { filter: "blur(0px)", opacity: 1, y: 0, duration: 0.8 });
-        }
-      });
-    }, 3500);
+      <div style="margin-bottom:32px;">
+        <div style="font-size:13px; letter-spacing:0.15em; color:var(--muted);">EMAIL</div>
+        <a href="mailto: nayakartik2008@gmail.com">nayakartik2008@gmail.com</a>
+      </div>
 
-    // --- BENTO GLOW PHYSICS ---
-    document.querySelectorAll('.card').forEach(card => {
-      const glow = card.querySelector('.card-glow');
-      if (!glow) return;
+      <div style="margin-bottom:32px;">
+        <div style="font-size:13px; letter-spacing:0.15em; color:var(--muted);">LINKEDIN</div>
+        <a href="https://www.linkedin.com/in/karnay/">https://www.linkedin.com/in/karnay/</a>
+      </div>
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', `${x}px`);
-        card.style.setProperty('--y', `${y}px`);
-        gsap.to(card, {
-          rotateY: (x / rect.width - 0.5) * 10,
-          rotateX: -(y / rect.height - 0.5) * 10,
-          duration: 0.35
-        });
-      });
+      <div>
+        <div style="font-size:13px; letter-spacing:0.15em; color:var(--muted);">GITHUB</div>
+        <a href="https://github.com/knayak35/">https://github.com/knayak35/</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.35 });
-      });
-    });
-  </script>
 </body>
 </html>
