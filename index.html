@@ -371,26 +371,6 @@
       line-height: 1.72;
     }
 
-    .about-direction {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-top: 34px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .direction-title {
-      color: var(--text);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .direction-text {
-      color: var(--muted);
-      line-height: 1.78;
-    }
-
     .activity-list {
       margin: 0;
       padding: 0;
@@ -421,6 +401,18 @@
       font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.025em;
+    }
+
+    .activity-title a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(138, 95, 53, 0.35);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .activity-title a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     .activity-type {
@@ -523,10 +515,6 @@
 
       .focus-label {
         margin-bottom: 8px;
-      }
-
-      .about-direction {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -663,7 +651,7 @@
             alt="Kartik Nayak"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
           />
-          <div class="fallback-photo"><img src="esplanade.png"></div>
+          <div class="fallback-photo">KN</div>
         </div>
 
         <p class="side-note">
@@ -710,10 +698,6 @@
                 </p>
               </div>
             </div>
-
-            <div class="about-direction">
-
-            </div>
           </div>
         </div>
       </section>
@@ -727,7 +711,9 @@
           <ul class="activity-list">
             <li class="activity">
               <div class="activity-head">
-                <div class="activity-title">Global Science Engineering Organization</div>
+                <div class="activity-title">
+                  <a href="https://gseo.framer.ai" target="_blank" rel="noreferrer">Global Science Engineering Organization</a>
+                </div>
                 <div class="activity-type">Research</div>
               </div>
 
@@ -748,7 +734,9 @@
 
             <li class="activity">
               <div class="activity-head">
-                <div class="activity-title">Star Generation</div>
+                <div class="activity-title">
+                  <a href="https://stargeneration.net" target="_blank" rel="noreferrer">Star Generation</a>
+                </div>
                 <div class="activity-type">Teaching</div>
               </div>
 
@@ -790,7 +778,9 @@
 
             <li class="activity">
               <div class="activity-head">
-                <div class="activity-title">Numbify</div>
+                <div class="activity-title">
+                  <a href="https://numbify.id" target="_blank" rel="noreferrer">Numbify</a>
+                </div>
                 <div class="activity-type">Education</div>
               </div>
 
@@ -811,7 +801,9 @@
 
             <li class="activity">
               <div class="activity-head">
-                <div class="activity-title">ZNotes Education</div>
+                <div class="activity-title">
+                  <a href="https://znotes.org" target="_blank" rel="noreferrer">ZNotes Education</a>
+                </div>
                 <div class="activity-type">Content</div>
               </div>
 
