@@ -1,835 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Kartik Nayak — Computer Science & Quantitative Finance</title>
-  <meta name="description" content="Kartik Nayak is an incoming B.Eng. Computer Science student at HKU on a full scholarship, interested in quantitative finance, mathematical modelling, statistics, algorithms, and computational research." />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartik Nayak — Computer Science, Mathematics & Research</title>
+  <meta name="description" content="Kartik Nayak is an incoming Computer Science student at HKU interested in quantitative research, mathematics, technology, and education.">
+  <link rel="icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f7f3eb;
-      --paper: #fffaf0;
-      --text: #1e1e1c;
-      --muted: #5f5a51;
-      --light: #8d8679;
-      --line: rgba(30, 30, 28, 0.13);
-      --line-soft: rgba(30, 30, 28, 0.075);
-      --accent: #8a5f35;
-      --accent-soft: rgba(138, 95, 53, 0.11);
+      --navy: #0e1b2b;
+      --navy-2: #17273b;
+      --cream: #f4f0e7;
+      --paper: #fbf8f1;
+      --ink: #15202c;
+      --muted: #66707a;
+      --line: #d7d2c8;
+      --lime: #c9ff4a;
+      --blue: #a9c8ff;
+      --white: #fff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
-      background:
-        linear-gradient(90deg, rgba(30, 30, 28, 0.035) 1px, transparent 1px),
-        linear-gradient(rgba(30, 30, 28, 0.035) 1px, transparent 1px),
-        radial-gradient(circle at 6% 8%, rgba(138, 95, 53, 0.12), transparent 24rem),
-        var(--bg);
-      background-size: 58px 58px, 58px 58px, auto, auto;
-      color: var(--text);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
+    img { max-width: 100%; }
+    a { color: inherit; }
+    ::selection { background: var(--lime); color: var(--navy); }
 
-    ::selection {
-      background: var(--text);
-      color: #fff;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
-      text-decoration-color: rgba(138, 95, 53, 0.35);
-      transition: color 0.2s ease, text-decoration-color 0.2s ease;
-    }
-
-    a:hover {
-      color: var(--text);
-      text-decoration-color: var(--text);
-    }
-
-    .page {
-      width: min(1080px, calc(100% - 36px));
-      margin: 0 auto;
-      padding: 38px 0 78px;
-    }
-
-    .topbar {
+    .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
+    .nav-shell { background: var(--navy); color: white; }
+    nav {
+      min-height: 84px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 28px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,.13);
     }
+    .brand { font-weight: 700; text-decoration: none; letter-spacing: -.03em; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: #cbd3dd; font-size: 13px; font-weight: 600; text-decoration: none; }
+    .nav-links a:hover { color: var(--lime); }
+    .nav-cta { border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 9px 15px; }
 
-    .brand {
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      text-decoration: none;
+    .hero { background: var(--navy); color: white; padding: 78px 0 92px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.18fr .82fr; gap: 78px; align-items: center; }
+    .kicker, .section-kicker {
+      display: flex; align-items: center; gap: 10px;
+      font-family: "DM Mono", monospace; text-transform: uppercase;
+      letter-spacing: .1em; font-size: 12px; font-weight: 500;
     }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .nav a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .nav a:hover {
-      color: var(--text);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 320px;
-      gap: 70px;
-      align-items: start;
-      padding-bottom: 58px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .eyebrow {
-      width: fit-content;
-      margin-bottom: 18px;
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 250, 240, 0.55);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
+    .kicker { color: var(--lime); margin-bottom: 26px; }
+    .kicker::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
     h1 {
-      max-width: 720px;
-      margin: 0;
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(54px, 7vw, 92px);
-      line-height: 0.95;
-      font-weight: 600;
-      letter-spacing: -0.06em;
+      margin-bottom: 28px; font-family: "Newsreader", serif; font-weight: 500;
+      font-size: clamp(58px, 7.6vw, 104px); line-height: .89; letter-spacing: -.06em;
+    }
+    h1 em { color: var(--lime); font-style: normal; }
+    .hero-copy { max-width: 660px; color: #bdc7d3; font-size: 18px; line-height: 1.75; }
+    .hero-copy strong { color: white; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 19px; border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px; color: white; font-size: 13px; font-weight: 700; text-decoration: none;
+    }
+    .button.primary { background: var(--lime); border-color: var(--lime); color: var(--navy); }
+    .button:hover { transform: translateY(-2px); }
+
+    .hero-photo { position: relative; margin: 0; }
+    .hero-photo::before {
+      content: ""; position: absolute; inset: 24px -22px -24px 22px;
+      border: 1px solid rgba(201,255,74,.55); border-radius: 6px;
+    }
+    .hero-photo img {
+      position: relative; width: 100%; aspect-ratio: 4 / 5; display: block;
+      object-fit: cover; object-position: 63% center; border: 8px solid white; border-radius: 6px;
+      filter: saturate(.85) contrast(1.03);
+    }
+    .photo-note {
+      position: absolute; left: -30px; bottom: 24px; z-index: 2;
+      padding: 12px 15px; background: var(--paper); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 4px; font-family: "DM Mono", monospace; font-size: 11px;
+      box-shadow: 0 14px 32px rgba(0,0,0,.18);
     }
 
-    .hero-copy {
-      max-width: 760px;
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.85;
+    .skills { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .skills-grid { display: grid; grid-template-columns: 200px 1fr; gap: 46px; align-items: stretch; }
+    .skills-label {
+      display: flex; align-items: center; padding: 32px 0;
+      color: var(--muted); font-family: "DM Mono", monospace; font-size: 11px;
+      font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
     }
-
-    strong {
-      color: var(--text);
-      font-weight: 750;
+    .skill-list { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .skill {
+      min-height: 116px; display: flex; flex-direction: column; justify-content: space-between;
+      padding: 27px 20px 24px; border-left: 1px solid var(--line);
     }
+    .skill-index { color: #8b949d; font-family: "DM Mono", monospace; font-size: 10px; }
+    .skill strong { font-size: 13px; line-height: 1.35; letter-spacing: -.01em; }
 
-    .hero-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+    .intro { padding: 92px 0; border-bottom: 1px solid var(--line); }
+    .intro-grid { display: grid; grid-template-columns: 280px 1fr; gap: 74px; }
+    .section-kicker { color: var(--muted); }
+    .section-kicker span { color: var(--ink); }
+    .intro h2, .section-title {
+      font-family: "Newsreader", serif; font-weight: 500; line-height: 1.05;
+      letter-spacing: -.045em; font-size: clamp(42px, 5.2vw, 70px);
     }
+    .intro h2 { max-width: 820px; margin-bottom: 30px; }
+    .intro h2 em { color: #54718d; font-style: normal; }
+    .intro-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; color: var(--muted); }
+    .intro-columns strong { color: var(--ink); }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 9px 15px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 250, 240, 0.58);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 750;
-      text-decoration: none;
-      transition: transform 0.18s ease, background 0.18s ease;
+    .work { padding: 96px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 46px; }
+    .section-title { margin: 10px 0 0; }
+    .section-aside { max-width: 380px; color: var(--muted); font-size: 14px; }
+    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .project {
+      display: flex; flex-direction: column; overflow: hidden; background: var(--paper);
+      border: 1px solid var(--line); border-radius: 12px; transition: transform .2s ease, box-shadow .2s ease;
     }
-
-    .pill:hover {
-      transform: translateY(-2px);
-      background: var(--paper);
+    .project:hover { transform: translateY(-4px); box-shadow: 0 22px 44px rgba(14,27,43,.1); }
+    .project-image { padding: 9px 9px 0; }
+    .project-image img {
+      width: 100%; height: 285px; display: block; object-fit: cover; object-position: top center;
+      border: 1px solid #c7c2b8; border-radius: 7px;
     }
+    .project-image.contain img { object-fit: contain; background: #fff; padding: 18px; }
+    .project-body { display: flex; flex-direction: column; flex: 1; padding: 25px 26px 28px; }
+    .project-meta { display: flex; justify-content: space-between; color: var(--muted); font-family: "DM Mono"; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+    .project h3 { margin: 17px 0 11px; font-size: 23px; line-height: 1.2; letter-spacing: -.035em; }
+    .project p { color: var(--muted); font-size: 14px; }
+    .project-link { margin-top: auto; padding-top: 12px; color: var(--ink); font-size: 13px; font-weight: 700; text-decoration: none; }
+    .project-link:hover { color: #466480; }
 
-    .pill.primary {
-      background: var(--text);
-      color: #fff;
-      border-color: var(--text);
+    .achievements { padding: 96px 0; background: var(--navy); color: white; }
+    .achievements .section-kicker { color: var(--lime); }
+    .achievements .section-title { margin-bottom: 46px; }
+    .achievement-head { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 42px; }
+    .achievement-head .section-title { margin-bottom: 0; }
+    .carousel-controls { display: flex; gap: 9px; }
+    .carousel-button {
+      width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
+      background: transparent; color: white; font: inherit; font-size: 18px; cursor: pointer;
     }
-
-    .side {
-      position: sticky;
-      top: 28px;
+    .carousel-button:hover, .carousel-button:focus-visible { border-color: var(--lime); color: var(--lime); outline: none; }
+    .award-carousel {
+      display: grid; grid-auto-flow: column; grid-auto-columns: minmax(310px, 38%); gap: 18px;
+      overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline mandatory;
+      scrollbar-width: none; padding: 2px 2px 18px;
     }
-
-    .photo-wrap {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      border-radius: 24px;
-      border: 1px solid var(--line);
-      background: #e2d4bf;
-      box-shadow: 0 22px 54px rgba(39, 32, 22, 0.12);
+    .award-carousel::-webkit-scrollbar { display: none; }
+    .award-card {
+      scroll-snap-align: start; overflow: hidden; background: var(--navy-2);
+      border: 1px solid rgba(255,255,255,.16); border-radius: 10px;
     }
-
-    .photo-wrap img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center;
+    .award-card img {
+      width: 100%; height: 270px; display: block; object-fit: contain; padding: 10px;
+      background: white; border-bottom: 1px solid rgba(255,255,255,.16);
     }
+    .award-card-body { padding: 22px 22px 24px; }
+    .award-year { color: var(--lime); font-family: "DM Mono"; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .award-card h3 { margin: 10px 0 7px; font-size: 19px; line-height: 1.25; }
+    .award-card p { margin: 0; color: #aeb9c6; font-size: 13px; }
+    .carousel-note { margin: 12px 0 0; color: #7f8b99; font-family: "DM Mono"; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
 
-    .fallback-photo {
-      width: 100%;
-      height: 100%;
-      display: none;
-      place-items: center;
-      background: var(--text);
-      color: white;
-      font-size: 54px;
-      font-weight: 800;
-      letter-spacing: -0.06em;
+    .personal { padding: 100px 0; }
+    .personal-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 72px; align-items: center; }
+    .personal-photo { margin: 0; padding: 9px; background: white; border: 1px solid var(--line); border-radius: 8px; transform: rotate(-1.5deg); box-shadow: 0 20px 50px rgba(14,27,43,.1); }
+    .personal-photo img { width: 100%; aspect-ratio: 4 / 3; display: block; object-fit: cover; border-radius: 4px; }
+    .personal .section-title { margin: 15px 0 25px; }
+    .personal-copy { color: var(--muted); font-size: 16px; }
+    .interests { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 27px; }
+    .interests span { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); font-size: 12px; font-weight: 600; }
+
+    footer { background: #091421; color: white; padding: 76px 0 38px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 50px; align-items: end; }
+    footer h2 { max-width: 780px; margin-bottom: 25px; font-family: "Newsreader"; font-size: clamp(44px, 6vw, 76px); line-height: .98; letter-spacing: -.05em; font-weight: 500; }
+    footer h2 span { color: var(--lime); }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a { color: #c5ced8; font-size: 14px; }
+    .footer-mark { color: #7f8b99; font-family: "DM Mono"; font-size: 11px; }
+    .copyright { margin-top: 68px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.12); color: #7f8b99; font-size: 11px; font-family: "DM Mono"; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .personal-grid { grid-template-columns: 1fr; }
+      .hero-photo { width: min(520px, 90%); }
+      .hero-photo img { aspect-ratio: 5 / 4; }
+      .skills-grid { grid-template-columns: 1fr; gap: 0; }
+      .skills-label { padding: 24px 0 12px; }
+      .skill-list { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+      .intro-grid { grid-template-columns: 1fr; gap: 28px; }
+      .personal-photo { order: 2; }
     }
-
-    .side-note {
-      margin-top: 18px;
-      padding: 18px 0 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14.5px;
-      line-height: 1.7;
-    }
-
-    main {
-      padding-top: 58px;
-    }
-
-    section {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 64px;
-      padding: 52px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    main section:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    h2 {
-      margin: 0;
-      color: var(--text);
-      font-size: 17px;
-      line-height: 1.35;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    p + p {
-      margin-top: 18px;
-    }
-
-    .content {
-      max-width: 760px;
-    }
-
-    .about-section {
-      display: block;
-      padding: 0 0 62px;
-      border-top: 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .about-shell {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 58px;
-      align-items: start;
-    }
-
-    .about-kicker {
-      margin-bottom: 18px;
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .about-title {
-      max-width: 390px;
-      margin: 0;
-      font-family: "Fraunces", Georgia, serif;
-      color: var(--text);
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 1.02;
-      font-weight: 600;
-      letter-spacing: -0.055em;
-    }
-
-    .about-summary {
-      margin-top: 22px;
-      max-width: 390px;
-      color: var(--muted);
-      font-size: 15.5px;
-      line-height: 1.8;
-    }
-
-    .about-panel {
-      position: relative;
-      padding: 30px 0 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .about-panel::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: 0;
-      width: 92px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .about-lead {
-      max-width: 720px;
-      color: var(--text);
-      font-size: clamp(21px, 2.3vw, 30px);
-      line-height: 1.34;
-      letter-spacing: -0.04em;
-      font-weight: 650;
-    }
-
-    .about-lead strong {
-      font-weight: 800;
-    }
-
-    .about-focus {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 34px;
-    }
-
-    .focus-item {
-      min-height: 170px;
-      padding: 18px 18px 20px;
-      border-left: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255, 250, 240, 0.45), rgba(255, 250, 240, 0));
-    }
-
-    .focus-label {
-      display: block;
-      margin-bottom: 28px;
-      color: var(--light);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .focus-item p {
-      color: var(--muted);
-      font-size: 14.5px;
-      line-height: 1.72;
-    }
-
-    .activity-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .activity {
-      padding: 0 0 30px;
-      margin-bottom: 30px;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .activity:last-child {
-      padding-bottom: 0;
-      margin-bottom: 0;
-      border-bottom: 0;
-    }
-
-    .activity-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 8px;
-    }
-
-    .activity-title {
-      color: var(--text);
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-    }
-
-    .activity-title a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(138, 95, 53, 0.35);
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .activity-title a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .activity-type {
-      flex: 0 0 auto;
-      color: var(--light);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding-top: 3px;
-    }
-
-    .activity p {
-      color: var(--muted);
-      line-height: 1.78;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 13px;
-    }
-
-    .tag {
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .life-list {
-      margin: 16px 0 0;
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    .life-list li {
-      margin: 8px 0;
-      padding-left: 4px;
-    }
-
-    .life-list li::marker {
-      color: var(--accent);
-    }
-
-    .section-index {
-      color: var(--light);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    footer {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 64px;
-      margin-top: 8px;
-      padding-top: 42px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    footer a {
-      font-weight: 750;
-    }
-
-    @media (max-width: 920px) {
-      .about-shell {
-        grid-template-columns: 1fr;
-        gap: 34px;
-      }
-
-      .about-title,
-      .about-summary {
-        max-width: 720px;
-      }
-
-      .about-focus {
-        grid-template-columns: 1fr;
-        gap: 0;
-        border-top: 1px solid var(--line-soft);
-      }
-
-      .focus-item {
-        min-height: auto;
-        border-left: 0;
-        border-bottom: 1px solid var(--line-soft);
-        padding: 20px 0;
-        background: transparent;
-      }
-
-      .focus-item:last-child {
-        border-bottom: 0;
-      }
-
-      .focus-label {
-        margin-bottom: 8px;
-      }
-    }
-
-    @media (max-width: 860px) {
-      .page {
-        width: min(100% - 28px, 1080px);
-        padding-top: 28px;
-        padding-bottom: 58px;
-      }
-
-      .topbar {
-        margin-bottom: 42px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .side {
-        position: static;
-        max-width: 280px;
-        order: -1;
-      }
-
-      .photo-wrap {
-        border-radius: 20px;
-      }
-
-      section,
-      footer {
-        display: block;
-      }
-
-      section {
-        padding: 40px 0;
-      }
-
-      .about-section {
-        padding-bottom: 46px;
-      }
-
-      .activity-head {
-        display: block;
-      }
-
-      .activity-type {
-        margin-top: 4px;
-      }
-
-      .section-index {
-        margin-bottom: 12px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .topbar {
-        align-items: flex-start;
-      }
-
-      .nav {
-        gap: 12px;
-        font-size: 12px;
-      }
-
-      h1 {
-        font-size: 50px;
-      }
-
-      .hero-copy {
-        font-size: 16.5px;
-      }
-
-      .hero-links {
-        gap: 10px;
-      }
-
-      .pill {
-        width: 100%;
-      }
-
-      .side {
-        max-width: 220px;
-      }
-
-      .about-title {
-        font-size: 34px;
-      }
-
-      .about-lead {
-        font-size: 22px;
-      }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, 1180px); }
+      nav { min-height: 70px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 56px 0 72px; }
+      .hero-grid { gap: 54px; }
+      h1 { font-size: 61px; }
+      .hero-copy { font-size: 16px; }
+      .skill-list { grid-template-columns: 1fr 1fr; }
+      .skill { min-height: 104px; padding: 20px 14px; }
+      .hero-photo { width: calc(100% - 18px); }
+      .photo-note { left: -8px; }
+      .intro, .work, .achievements, .personal { padding: 70px 0; }
+      .intro-columns, .projects { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-aside { margin-top: 20px; }
+      .project-image img { height: 225px; }
+      .achievement-head { align-items: flex-start; }
+      .carousel-controls { padding-top: 7px; }
+      .award-carousel { grid-auto-columns: 86%; }
+      .award-card img { height: 230px; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
-  <div class="page">
-    <header class="topbar">
+  <div class="nav-shell">
+    <nav class="container" aria-label="Main navigation">
       <a class="brand" href="#top">Kartik Nayak</a>
-
-      <nav class="nav" aria-label="Navigation">
+      <div class="nav-links">
+        <a href="#skills">Skills</a>
         <a href="#about">About</a>
         <a href="#work">Work</a>
-        <a href="#outside">Outside</a>
-        <a href="mailto:nayakartik2008@gmail.com">Contact</a>
-      </nav>
-    </header>
-
-    <div class="hero" id="top">
-      <div>
-        <div class="eyebrow">Incoming B.Eng. Computer Science student at HKU</div>
-
-        <h1>Hey, I’m Kartik.</h1>
-
-        <p class="hero-copy">
-          I’m a graduating high school senior from <strong>SIS Semarang</strong> in Indonesia, and I’ll be joining the <strong>University of Hong Kong</strong> for a <strong>Bachelor of Engineering in Computer Science</strong> on a full scholarship. I’m interested in <strong>quantitative finance</strong>, <strong>mathematical modelling</strong>, <strong>statistics</strong>, and using computation to study complex financial and economic systems.
-        </p>
-
-        <p class="hero-copy">
-          Long term, I hope to work as a <strong>quantitative researcher</strong>, developing mathematical and computational models for financial markets. I also want to remain closely involved in research, teaching, and the communication of difficult technical ideas.
-        </p>
-
-        <div class="hero-links">
-          <a class="pill primary" href="mailto:nayakartik2008@gmail.com">Email me</a>
-          <a class="pill" href="https://www.linkedin.com/in/karnay" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
+        <a href="#achievements">Achievements</a>
+        <a class="nav-cta" href="mailto:nayakartik2008@gmail.com">Get in touch</a>
       </div>
-
-      <aside class="side">
-        <div class="photo-wrap">
-          <img
-            src="esplanade.png"
-            alt="Kartik Nayak"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-          />
-          <div class="fallback-photo">KN</div>
-        </div>
-
-        <p class="side-note">
-          Currently focused on strengthening my foundations in programming, probability, statistics, optimisation, financial mathematics, and computational research before university.
-        </p>
-      </aside>
-    </div>
-
-    <main>
-      <section id="about" class="about-section">
-        <div class="about-shell">
-          <div>
-            <div class="about-kicker">About</div>
-            <h2 class="about-title">I like turning difficult mathematical ideas into models that can be tested, improved, and used.</h2>
-            <p class="about-summary">
-              Most of what I do sits somewhere between mathematics, computer science, research, and education. I enjoy understanding how complex systems behave, building models around them, and explaining the reasoning clearly.
-            </p>
-          </div>
-
-          <div class="about-panel">
-            <p class="about-lead">
-              I’m interested in the space where <strong>computer science</strong>, <strong>mathematics</strong>, and <strong>financial markets</strong> meet.
-
-            <div class="about-focus">
-              <div class="focus-item">
-                <span class="focus-label">HKU</span>
-                <p>
-                  I want to build a strong base in algorithms, probability, statistics, optimisation, numerical methods, machine learning, and financial mathematics.
-                </p>
-              </div>
-
-              <div class="focus-item">
-                <span class="focus-label">Work</span>
-                <p>
-                  I usually start by breaking a difficult problem into assumptions, variables, and measurable relationships, then turning it into code, analysis, writing, or teaching.
-                </p>
-              </div>
-
-              <div class="focus-item">
-                <span class="focus-label">Goal</span>
-                <p>
-                  My main goal is to become a quantitative researcher while continuing to contribute to technical research, teaching, and mentorship.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="work">
-        <div>
-          <h2>Things I’ve worked on</h2>
-        </div>
-
-        <div class="content">
-          <ul class="activity-list">
-            <li class="activity">
-              <div class="activity-head">
-                <div class="activity-title"><a href="https://www.researchgate.net/publication/395949829_Advancing_Oligopoly_Pricing_Predictions_through_Machine_Learning_within_the_Indian_Telecommunication_Industry" target="_blank" rel="noreferrer">Telecommunications Pricing and Market Research</a></div>
-                
-                <div class="activity-type">Quantitative Research</div>
-              </div>
-
-              <p>
-                I researched pricing and revenue patterns in India’s telecommunications industry using statistical analysis and machine-learning methods. The project explored how market variables could be transformed into measurable features and used to study changes in company performance.
-              </p>
-
-              <p>
-                This was my first substantial experience working across data collection, model design, evaluation, and interpretation. It developed my interest in quantitative research and showed me the importance of questioning assumptions rather than treating a model’s output as an answer by itself.
-              </p>
-
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Statistical modelling</span>
-                <span class="tag">Financial analysis</span>
-              </div>
-            </li>
-
-            <li class="activity">
-              <div class="activity-head">
-                <div class="activity-title">
-                  <a href="https://gseo.framer.ai" target="_blank" rel="noreferrer">Global Science Engineering Organization</a>
-                </div>
-                <div class="activity-type">Research</div>
-              </div>
-
-              <p>
-                I co-founded and helped lead a student-run STEM organization focused on research, scientific communication, and making technical ideas more accessible to students. The platform publishes research articles, student interviews, and analytical content while giving students a place to write, edit, review, and discuss complex ideas more seriously.
-              </p>
-
-              <p>
-                My role involved research planning, editing technical articles, coordinating with contributors, and shaping the publishing process. It strengthened my ability to evaluate arguments, communicate research clearly, manage long-term projects, and turn broad questions into structured work.
-              </p>
-
-              <div class="tags">
-                <span class="tag">Research communication</span>
-                <span class="tag">Technical editing</span>
-                <span class="tag">Leadership</span>
-              </div>
-            </li>
-
-            <li class="activity">
-              <div class="activity-head">
-                <div class="activity-title">
-                  <a href="https://stargeneration.id" target="_blank" rel="noreferrer">Star Generation</a>
-                </div>
-                <div class="activity-type">Teaching</div>
-              </div>
-
-              <p>
-                I teach younger students in Math Olympiad, IGCSE, and A Level subjects. Much of my teaching focuses on helping students recognise patterns, construct rigorous arguments, and develop methods they can reuse across unfamiliar problems.
-              </p>
-
-              <p>
-                I especially enjoy explaining difficult mathematical ideas in a way that feels precise without being intimidating. Teaching has strengthened my own problem-solving because it forces me to understand assumptions, methods, and edge cases deeply enough to explain them clearly.
-              </p>
-
-              <div class="tags">
-                <span class="tag">Mathematical reasoning</span>
-                <span class="tag">Problem solving</span>
-                <span class="tag">Teaching</span>
-              </div>
-            </li>
-
-
-            <li class="activity">
-              <div class="activity-head">
-                <div class="activity-title">
-                  <a href="https://znotes.org" target="_blank" rel="noreferrer">ZNotes Education</a>
-                </div>
-                <div class="activity-type">Content</div>
-              </div>
-
-              <p>
-                I contributed Cambridge-focused learning resources and notes for students preparing for exams. The work involved turning technical syllabus content into explanations that were concise, logically structured, and easier to apply under time pressure.
-              </p>
-
-              <p>
-                This experience strengthened my technical writing and ability to identify the essential structure behind a complex topic. Those same skills are valuable in research, where a model or result is only useful if its assumptions and reasoning can be explained clearly.
-              </p>
-
-              <div class="tags">
-                <span class="tag">Cambridge exams</span>
-                <span class="tag">Notes writing</span>
-                <span class="tag">Student resources</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="outside">
-        <div>
-          <h2>Outside academics</h2>
-        </div>
-
-        <div class="content">
-          <p>
-            Outside school and projects, I spend time on activities that keep me curious and balanced. I enjoy both creative and analytical interests, as well as things that take me away from a screen.
-          </p>
-
-          <ul class="life-list">
-            <li>playing guitar or drums</li>
-            <li>gym and going outdoors</li>
-            <li>following financial markets, global politics, economics, and world affairs</li>
-          </ul>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="section-index">Contact</div>
-
-      <div>
-        Always happy to meet new people, discuss quantitative finance, research, mathematics, or software projects, and hear what you’re working on.
-        <a href="mailto:nayakartik2008@gmail.com">Send me an email.</a>
-      </div>
-    </footer>
+    </nav>
   </div>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">Computer science · Mathematics · Finance</div>
+        <h1>Curious by nature.<br><em>Rigorous</em> by choice.</h1>
+        <p class="hero-copy">I’m <strong>Kartik Nayak</strong>, an incoming Computer Science student at the <strong>University of Hong Kong</strong> on a full scholarship. I’m interested in using mathematics and computation to understand markets, build useful systems, and explain difficult ideas clearly.</p>
+        <div class="buttons">
+          <a class="button primary" href="#work">Explore my work ↓</a>
+          <a class="button" href="https://www.linkedin.com/in/karnay" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img src="esplanade.png" alt="Kartik Nayak in Singapore" fetchpriority="high">
+        <figcaption class="photo-note">Semarang → Hong Kong · 2026</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <section class="skills" id="skills" aria-label="Core skills">
+    <div class="container skills-grid">
+      <div class="skills-label">Core strengths</div>
+      <div class="skill-list">
+        <div class="skill"><span class="skill-index">01</span><strong>Python & data analysis</strong></div>
+        <div class="skill"><span class="skill-index">02</span><strong>Statistical modelling</strong></div>
+        <div class="skill"><span class="skill-index">03</span><strong>Mathematical problem solving</strong></div>
+        <div class="skill"><span class="skill-index">04</span><strong>Research & technical writing</strong></div>
+        <div class="skill"><span class="skill-index">05</span><strong>Teaching & leadership</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="intro" id="about">
+      <div class="container intro-grid">
+        <div class="section-kicker"><span>01</span> / About me</div>
+        <div>
+          <h2>I’m driven by the moment a difficult idea <em>starts to make sense.</em></h2>
+          <div class="intro-columns">
+            <p>I grew up in Semarang, Indonesia, where Olympiad mathematics first taught me to enjoy sitting with a hard problem instead of rushing toward an answer. That habit now shapes how I approach <strong>computer science, probability, statistics, optimisation, and financial markets.</strong></p>
+            <p>I learn best by moving between theory and practice: building a model, questioning its assumptions, then explaining it to someone else. Through research, teaching, publishing, and student leadership, I’ve learned that <strong>clear thinking and clear communication are inseparable.</strong> At HKU, I hope to deepen both.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker"><span>02</span> / Selected work</div>
+            <h2 class="section-title">Research, education<br>& initiatives.</h2>
+          </div>
+          
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-image"><img src="research.png" alt="Abstract of Kartik's machine-learning research paper on telecommunications pricing" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Quantitative Research</span><span>2025</span></div>
+              <h3>Machine Learning for Telecommunications Pricing</h3>
+              <p>Conducted independent research on India’s telecommunications market, applying regression, decision-tree, and random-forest models to subscriber and revenue data. The project combined machine learning with economic analysis to evaluate pricing strategies and market sustainability.</p>
+              <a class="project-link" href="https://www.researchgate.net/publication/395949829_Advancing_Oligopoly_Pricing_Predictions_through_Machine_Learning_within_the_Indian_Telecommunication_Industry" target="_blank" rel="noreferrer">Read my paper ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image"><img src="gseo.png" alt="GSEO student research journal website" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Co-Founder · Research</span><span>Ongoing</span></div>
+              <h3>Global Science Engineering Organization</h3>
+              <p>Co-founded a weekly science and engineering publication reaching hundreds of readers across eight countries. I coordinate an international team of writers and editors and lead interviews with students from universities including Stanford, MIT, and Georgia Tech.</p>
+              <a class="project-link" href="https://gseo.framer.ai" target="_blank" rel="noreferrer">Visit GSEO ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image"><img src="stargen-media.png" alt="Star Generation SEAMO camp tutor announcement featuring Kartik" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Teaching · Mathematics</span><span>Current</span></div>
+              <h3>Olympiad and Exam Preparation at Star Generation</h3>
+              <p>Work as a paid STEM tutor, creating personalised Mathematics, Science, and Computer Science lessons for secondary students. My students improved their academic performance by more than 40% on average while building greater confidence and independence.</p>
+              <a class="project-link" href="https://stargeneration.id" target="_blank" rel="noreferrer">Visit Star Generation ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image"><img src="znotes.png" alt="ZNotes learning platform homepage" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Educational Content</span><span>Contributor</span></div>
+              <h3>Cambridge Learning Resources for ZNotes</h3>
+              <p>Joined ZNotes as its youngest contributor in Grade 8 and later became an intern, developing Cambridge Mathematics, Biology, Physics, and Computer Science resources for a free platform serving over five million learners worldwide.</p>
+              <a class="project-link" href="https://znotes.org" target="_blank" rel="noreferrer">Explore ZNotes ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image"><img src="student-council.png" alt="Kartik speaking as Student Council President" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Leadership · Community</span><span>Student Council</span></div>
+              <h3>Student Council President</h3>
+              <p>Dedicated over 500 hours to student leadership and service, leading a 20-member council and delivering the school’s first prom for more than 80 students. The event raised Rp40 million for future activities and charitable causes.</p>
+              <span class="project-link">Leadership at SIS Semarang</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-image"><img src="tweety-podcast.png" alt="Tweety Podcast episode thumbnail featuring Kartik and other students" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Media · Conversation</span><span>Tweety Podcast</span></div>
+              <h3>Tweety Podcast</h3>
+              <p>Founded, produced, and hosted a student podcast featuring honest conversations with high-achieving students and varsity athletes. I led concept development, guest scheduling, recording, editing, and promotion, helping episodes surpass 3,000 views.</p>
+              <a class="project-link" href="https://www.youtube.com/@TweetyPodcast" target="_blank" rel="noreferrer">Watch Our Videos ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="achievements" id="achievements">
+      <div class="container">
+        <div class="achievement-head">
+          <div>
+            <div class="section-kicker"><span>03</span> / Mathematics Olympiads</div>
+            <h2 class="section-title">Years of solving<br>the unfamiliar.</h2>
+          </div>
+          <div class="carousel-controls" aria-label="Olympiad carousel controls">
+            <button class="carousel-button" type="button" data-carousel-prev aria-label="Previous Olympiad">←</button>
+            <button class="carousel-button" type="button" data-carousel-next aria-label="Next Olympiad">→</button>
+          </div>
+        </div>
+        <div class="award-carousel" data-carousel tabindex="0" aria-label="Mathematics Olympiad achievements">
+          <article class="award-card"><img src="iymc-2025.png" alt="IYMC first national award certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2025 · National distinction</span><h3>International Youth Math Challenge</h3><p>1st National Award after achieving Indonesia’s highest score in the final round.</p></div></article>
+          <article class="award-card"><img src="amo-2024.png" alt="American Mathematics Olympiad silver award certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2024 · Silver</span><h3>American Mathematics Olympiad</h3><p>Silver Award for outstanding achievement in the Grade 11 competition.</p></div></article>
+          <article class="award-card"><img src="wmi-2024.png" alt="World Mathematics Invitational bronze award certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2024 · Bronze</span><h3>World Mathematics Invitational</h3><p>Bronze Award in the WMI preliminary round.</p></div></article>
+          <article class="award-card"><img src="simoc-2022.png" alt="SIMOC overall second runner-up certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2022 · Overall 2nd runner-up</span><h3>Singapore Math Olympiad Challenge</h3><p>Overall second runner-up in the Grade 8 competition.</p></div></article>
+          <article class="award-card"><img src="seamo-x-2022.png" alt="SEAMO X gold award certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2022 · Gold</span><h3>SEAMO X</h3><p>Gold Award after placing at or above the 92nd percentile across 22 countries.</p></div></article>
+          <article class="award-card"><img src="seamo-2022.png" alt="SEAMO gold award certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2022 · Gold</span><h3>Southeast Asian Mathematical Olympiad</h3><p>Gold Award, placing among the top eight percent of participants.</p></div></article>
+          <article class="award-card"><img src="sasmo-2021.png" alt="SASMO silver award certificate" loading="lazy"><div class="award-card-body"><span class="award-year">2021 · Silver</span><h3>Singapore & Asian Schools Math Olympiad</h3><p>Silver Award in the Grade 7 competition.</p></div></article>
+        </div>
+        <p class="carousel-note">Swipe, scroll, or use the arrows to explore all seven awards</p>
+      </div>
+    </section>
+
+    <section class="personal" id="personal">
+      <div class="container personal-grid">
+        <figure class="personal-photo"><img src="personal.png" alt="Kartik in front of the Singapore skyline at night" loading="lazy"></figure>
+        <div>
+          <div class="section-kicker"><span>04</span> / Beyond the desk</div>
+          <h2 class="section-title">Serious about the work.<br>Curious about everything else.</h2>
+          <p class="personal-copy">Outside academics, I play guitar and drums, train at the gym, spend time outdoors, and follow financial markets, economics, politics, and world affairs. These interests keep me grounded—and often give me a new angle on the problems I’m working through.</p>
+          <div class="interests"><span>Guitar</span><span>Drums</span><span>Training</span><span>Markets</span><span>World affairs</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2>Have an interesting problem?<br><span>Let’s talk.</span></h2>
+          <div class="footer-links">
+            <a href="mailto:nayakartik2008@gmail.com">nayakartik2008@gmail.com</a>
+            <a href="https://www.linkedin.com/in/karnay" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="footer-mark">KARTIK NAYAK<br>SEMARANG · HONG KONG</div>
+      </div>
+      <div class="copyright">© 2026 Kartik Nayak. Designed with curiosity and care.</div>
+    </div>
+  </footer>
+  <script>
+    const carousel = document.querySelector('[data-carousel]');
+    const moveCarousel = direction => {
+      const card = carousel.querySelector('.award-card');
+      const gap = 18;
+      carousel.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: 'smooth' });
+    };
+    document.querySelector('[data-carousel-prev]').addEventListener('click', () => moveCarousel(-1));
+    document.querySelector('[data-carousel-next]').addEventListener('click', () => moveCarousel(1));
+  </script>
 </body>
 </html>
